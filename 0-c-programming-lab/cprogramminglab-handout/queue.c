@@ -1,4 +1,4 @@
-/* 
+/*
  * Code for basic C skills diagnostic.
  * Developed for courses 15-213/18-213/15-513 by R. E. Bryant, 2017
  */
@@ -23,7 +23,9 @@
 queue_t *q_new()
 {
     queue_t *q =  malloc(sizeof(queue_t));
-    /* What if malloc returned NULL? */
+
+    if (q == NULL) { return NULL; }
+
     q->head = NULL;
     return q;
 }
@@ -31,8 +33,15 @@ queue_t *q_new()
 /* Free all storage used by queue */
 void q_free(queue_t *q)
 {
-    /* How about freeing the list elements? */
-    /* Free queue structure */
+    list_ele_t* tmp;
+
+    while (q->head != NULL)
+    {
+       tmp = q->head;
+       q->head = q->head->next;
+       free(tmp);
+    }
+
     free(q);
 }
 
@@ -43,10 +52,13 @@ void q_free(queue_t *q)
  */
 bool q_insert_head(queue_t *q, int v)
 {
+    if (q == NULL) { return false; }
+
     list_ele_t *newh;
-    /* What should you do if the q is NULL? */
     newh = malloc(sizeof(list_ele_t));
-    /* What if malloc returned NULL? */
+
+    if (newh == NULL) { return false; }
+
     newh->value = v;
     newh->next = q->head;
     q->head = newh;
@@ -102,4 +114,3 @@ void q_reverse(queue_t *q)
 {
     /* You need to write the code for this function */
 }
-
