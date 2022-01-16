@@ -62,6 +62,7 @@ bool q_insert_head(queue_t *q, int v)
     newh->value = v;
     newh->next = q->head;
     q->head = newh;
+
     return true;
 }
 
@@ -87,8 +88,16 @@ bool q_insert_tail(queue_t *q, int v)
 */
 bool q_remove_head(queue_t *q, int *vp)
 {
-    /* You need to fix up this code. */
+    if (q == NULL) { return false; }
+
+    list_ele_t *tmp = q->head;
     q->head = q->head->next;
+
+    if (vp != NULL) {
+        vp = &tmp->value;
+        free(tmp);
+    }
+
     return true;
 }
 
