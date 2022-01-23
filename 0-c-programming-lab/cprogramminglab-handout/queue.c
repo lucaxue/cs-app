@@ -27,6 +27,7 @@ queue_t *q_new()
 
     q->head = NULL;
     q->tail = NULL;
+    q->count = 0;
     return q;
 }
 
@@ -39,9 +40,9 @@ void q_free(queue_t *q)
 
     while (q->head != NULL)
     {
-       tmp = q->head;
-       q->head = q->head->next;
-       free(tmp);
+        tmp = q->head;
+        q->head = q->head->next;
+        free(tmp);
     }
 
     free(q);
@@ -66,7 +67,7 @@ bool q_insert_head(queue_t *q, int v)
     if (! q->head) { q->tail = newh; }
 
     q->head = newh;
-
+    q->count++;
     return true;
 }
 
@@ -89,9 +90,10 @@ bool q_insert_tail(queue_t *q, int v)
 
     newt->value = v;
     newt->next = NULL;
+
     q->tail->next = newt; // ???? why is this line even needed
     q->tail = newt;
-
+    q->count++;
     return true;
 }
 
@@ -112,6 +114,7 @@ bool q_remove_head(queue_t *q, int *vp)
     if (vp) { *vp = tmp->value; }
 
     free(tmp);
+    q->count--;
     return true;
 }
 
@@ -123,7 +126,8 @@ int q_size(queue_t *q)
 {
     /* You need to write the code for this function */
     /* Remember: It should operate in O(1) time */
-    return 0;
+    if (! q) { return 0; }
+    return q->count;
 }
 
 /*
