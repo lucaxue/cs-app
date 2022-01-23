@@ -38,7 +38,7 @@ void q_free(queue_t *q)
 
     list_ele_t* tmp;
 
-    while (q->head != NULL)
+    while (q->head)
     {
         tmp = q->head;
         q->head = q->head->next;
@@ -71,7 +71,6 @@ bool q_insert_head(queue_t *q, int v)
     return true;
 }
 
-
 /*
   Attempt to insert element at tail of queue.
   Return true if successful.
@@ -79,9 +78,6 @@ bool q_insert_head(queue_t *q, int v)
  */
 bool q_insert_tail(queue_t *q, int v)
 {
-    /* You need to write the complete code for this function */
-    /* Remember: It should operate in O(1) time */
-
     if (! q) { return false; }
 
     list_ele_t *newt;
@@ -91,7 +87,7 @@ bool q_insert_tail(queue_t *q, int v)
     newt->value = v;
     newt->next = NULL;
 
-    q->tail->next = newt; // ???? why is this line even needed
+    q->tail->next = newt;
     q->tail = newt;
     q->count++;
     return true;
@@ -124,10 +120,7 @@ bool q_remove_head(queue_t *q, int *vp)
  */
 int q_size(queue_t *q)
 {
-    /* You need to write the code for this function */
-    /* Remember: It should operate in O(1) time */
-    if (! q) { return 0; }
-    return q->count;
+    return q ? q->count : 0;
 }
 
 /*
@@ -139,5 +132,21 @@ int q_size(queue_t *q)
  */
 void q_reverse(queue_t *q)
 {
-    /* You need to write the code for this function */
+    if (! q) { return; }
+
+    list_ele_t *current = q->head;
+    list_ele_t *prev = NULL, *next = NULL;
+
+    while (current)
+    {
+        next = current->next;
+
+        current->next = prev;
+
+        prev = current;
+        current = next;
+    }
+
+    q->tail = q->head;
+    q->head = prev;
 }
