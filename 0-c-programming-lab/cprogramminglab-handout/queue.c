@@ -94,7 +94,7 @@ bool q_remove_head(queue_t *q, int *vp)
     q->head = q->head->next;
 
     if (vp != NULL) {
-        vp = &tmp->value;
+        *vp = tmp->value;
         free(tmp);
     }
 
