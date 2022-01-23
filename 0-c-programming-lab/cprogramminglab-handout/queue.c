@@ -23,8 +23,7 @@
 queue_t *q_new()
 {
     queue_t *q =  malloc(sizeof(queue_t));
-
-    if (q == NULL) { return NULL; }
+    if (! q) { return NULL; }
 
     q->head = NULL;
     return q;
@@ -52,12 +51,11 @@ void q_free(queue_t *q)
  */
 bool q_insert_head(queue_t *q, int v)
 {
-    if (q == NULL) { return false; }
+    if (! q) { return false; }
 
     list_ele_t *newh;
     newh = malloc(sizeof(list_ele_t));
-
-    if (newh == NULL) { return false; }
+    if (! newh) { return false; }
 
     newh->value = v;
     newh->next = q->head;
@@ -88,16 +86,14 @@ bool q_insert_tail(queue_t *q, int v)
 */
 bool q_remove_head(queue_t *q, int *vp)
 {
-    if (q == NULL) { return false; }
+    if (! q) { return false; }
 
     list_ele_t *tmp = q->head;
     q->head = q->head->next;
 
-    if (vp != NULL) {
-        *vp = tmp->value;
-        free(tmp);
-    }
+    if (vp) { *vp = tmp->value; }
 
+    free(tmp);
     return true;
 }
 
