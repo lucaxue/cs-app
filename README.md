@@ -22,7 +22,7 @@ some utility bash scripts have been provided to quickly start off your docker en
 
 ### Usage
 
-* Builds image and spins container with the source code bind mounted in the container, ready for development.
+* Pulls images to spin up a container with the source code bind mounted, ready for development.
 
     ```bash
     docker/scripts/up [lab name | e.g datalab]
