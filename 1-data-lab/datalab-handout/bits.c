@@ -144,7 +144,7 @@ NOTES:
  */
 int bitXor(int x, int y) {
   /*
-  * Implement XOR using NANDs:
+  * XOR can be composed out of NANDs like the following
   * XOR = [X NAND (X NAND Y)] NAND [Y NAND (X NAND Y)]
   */
   int nand = ~(x & y);
@@ -193,7 +193,12 @@ int allOddBits(int x) {
  *   Rating: 2
  */
 int negate(int x) {
-  return 2;
+  /*
+   * The complement of a number is one more negative
+   * than the original number. Hence adding 1 to it
+   * causes it to be the exact negative.
+   */
+  return ~x + 1;
 }
 //3
 /*
