@@ -172,7 +172,19 @@ int tmin(void) {
  *   Rating: 1
  */
 int isTmax(int x) {
-  return 1;
+  /*
+   * Assuming x is Tmax then...
+   *
+   * TMax + 1 = TMin
+   * TMax + TMin = UMax
+   * !(~UMax) = !0 = 1
+   *
+   * However if x is UMax, it also passes the above steps
+   * so adding !!(~x) ensures it is not accepted.
+   */
+  int tmin = x + 1;
+  int umax = tmin + x;
+  return !!(~x) & !(~umax);
 }
 /*
  * allOddBits - return 1 if all odd-numbered bits in word set to 1
