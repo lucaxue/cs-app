@@ -14,3 +14,21 @@ The lab materials are from the [student website](http://csapp.cs.cmu.edu/3e/labs
 - [ ] L5: shell lab
 - [ ] L6: malloc lab
 - [ ] L7: proxy lab
+
+## Developing with Docker
+
+In order to avoid environment issues, docker images (credit to https://github.com/Yansongsongsong/CSAPP-Experiments), as well as
+some utility bash scripts have been provided to quickly start off your docker environment.
+
+### Usage
+
+* Builds image and spins container with the source code bind mounted in the container, ready for development.
+
+    ```bash
+    docker/scripts/up [lab name | e.g datalab]
+    ```
+
+* Stops and removes the container and the image.
+    ```bash
+    docker/scripts/down [lab name | e.g datalab]
+    ```
