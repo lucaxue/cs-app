@@ -1,0 +1,6 @@
+#!/bin/bash
+
+LAB=$1
+
+docker rm -f ${LAB}
+docker rmi -f yansongsongsong/csapp:${LAB}
