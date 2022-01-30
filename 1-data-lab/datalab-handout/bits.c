@@ -171,11 +171,12 @@ int tmin(void) {
  */
 int isTmax(int x) {
   /*
-  * x is TMax when composite x cancels TMin out with XOR leaving leading 0s.
-  * Double bang then coerces all non 0 values into 1.
+  * x is TMax when x XOR TMin results into leadings 1s.
+  * Finding the composite of that results into leading 0s, and a double logical NOT
+  * causes any non 0 value to be to be evaluated as 1.
   */
   int tmix = 1 << 31;
-  return !!(tmix ^ ~x);
+  return !!~(tmix ^ x);
 }
 /*
  * allOddBits - return 1 if all odd-numbered bits in word set to 1
