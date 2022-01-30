@@ -187,7 +187,46 @@ int isTmax(int x) {
  *   Rating: 2
  */
 int allOddBits(int x) {
-  return 2;
+
+
+  // 1111 1111
+  // 1010 1010 1010
+
+
+
+
+
+
+
+
+  // x
+  // OR
+  // 1110 1110 1110 1110 1110 1110 1110 1110
+  // 1111 1111 1111 1111 1111 1111 1111 1111 -> true
+
+  // generate mask?
+  //     1110
+  // AND 0001
+  //     0000
+  //
+
+  // make every byte (& 1)
+
+
+
+  int byte_1 = x >> 28 & 0xFF;
+  int byte_2 = x >> 24 & 0xFF;
+  int byte_3 = x >> 20 & 0xFF;
+  int byte_4 = x >> 16 & 0xFF;
+  int byte_5 = x >> 12 & 0xFF;
+  int byte_6 = x >> 8 & 0xFF;
+  int byte_7 = x >> 4 & 0xFF;
+  int byte_8 = x & 0xFF;
+
+  // 1111 1111
+  //
+
+  return !! byte_8 & 1;
 }
 /*
  * negate - return -x
