@@ -150,7 +150,6 @@ int bitXor(int x, int y) {
   int nand = ~(x & y);
   return ~(~(x & nand) & ~(y & nand));
 }
-
 /*
  * tmin - return minimum two's complement integer
  *   Legal ops: ! ~ & ^ | + << >>
@@ -164,7 +163,6 @@ int tmin(void) {
    */
   return 1 << 31;
 }
-
 //2
 /*
  * isTmax - returns 1 if x is the maximum, two's complement number,
@@ -174,13 +172,7 @@ int tmin(void) {
  *   Rating: 1
  */
 int isTmax(int x) {
-  /*
-  * x is TMax when x XOR TMin results into leadings 1s.
-  * Finding the composite of that results into leading 0s, and a double logical NOT
-  * causes any non 0 value to be to be evaluated as 1.
-  */
-  int tmix = 1 << 31;
-  return !!~(tmix ^ x);
+  return 1;
 }
 /*
  * allOddBits - return 1 if all odd-numbered bits in word set to 1
@@ -191,46 +183,7 @@ int isTmax(int x) {
  *   Rating: 2
  */
 int allOddBits(int x) {
-
-
-  // 1111 1111
-  // 1010 1010 1010
-
-
-
-
-
-
-
-
-  // x
-  // OR
-  // 1110 1110 1110 1110 1110 1110 1110 1110
-  // 1111 1111 1111 1111 1111 1111 1111 1111 -> true
-
-  // generate mask?
-  //     1110
-  // AND 0001
-  //     0000
-  //
-
-  // make every byte (& 1)
-
-
-
-  int byte_1 = x >> 28 & 0xFF;
-  int byte_2 = x >> 24 & 0xFF;
-  int byte_3 = x >> 20 & 0xFF;
-  int byte_4 = x >> 16 & 0xFF;
-  int byte_5 = x >> 12 & 0xFF;
-  int byte_6 = x >> 8 & 0xFF;
-  int byte_7 = x >> 4 & 0xFF;
-  int byte_8 = x & 0xFF;
-
-  // 1111 1111
-  //
-
-  return !! byte_8 & 1;
+  return 2;
 }
 /*
  * negate - return -x
