@@ -22,13 +22,13 @@ some utility bash scripts have been provided to quickly start off your docker en
 
 ### Usage
 
-* Pulls images to spin up a container with the source code bind mounted, ready for development.
+- Pulls images to spin up a container with the source code bind mounted, ready for development.
 
-    ```bash
-    docker/scripts/up [lab name | e.g datalab]
-    ```
+  ```bash
+  docker/scripts/up [lab name | e.g datalab]
+  ```
 
-* Stops and removes the container and the image.
-    ```bash
-    docker/scripts/down [lab name | e.g datalab]
-    ```
+- Stops and removes the container and optionally the image with the `--purge` flag.
+  ```bash
+  docker/scripts/down [--purge] [lab name | e.g datalab]
+  ```
