@@ -10,7 +10,7 @@ fi
 
 docker run --privileged -d \
     -p 1221:22 \
-    -v $(find ${PWD}/**/${LAB}-handout | head -n 1)/root/${LAB}-handout \
+    -v $(find ${PWD}/**/${LAB}-handout | head -n 1):/root/${LAB}-handout \
     --name ${LAB} \
     yansongsongsong/csapp:${LAB}
 
