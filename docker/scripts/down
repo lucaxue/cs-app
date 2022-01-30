@@ -2,5 +2,11 @@
 
 LAB=$1
 
+if [ $# -eq 0 ]; then
+    echo "No arguments provided, usage:"
+    echo "docker/scripts/down [lab name|e.g. datalab]"
+    exit 1
+fi
+
 docker rm -f ${LAB}
 docker rmi -f yansongsongsong/csapp:${LAB}
