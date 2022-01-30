@@ -143,8 +143,12 @@ NOTES:
  *   Rating: 1
  */
 int bitXor(int x, int y) {
-  // NOTE: This is not my solution. Look more into this.
-  return ~(x & y) & (~(~x & ~y));
+  /*
+  * Implement XOR using NANDs:
+  * XOR = [X NAND (X NAND Y)] NAND [Y NAND (X NAND Y)]
+  */
+  int nand = ~(x & y);
+  return ~(~(x & nand) & ~(y & nand));
 }
 
 /*
