@@ -195,6 +195,19 @@ int isTmax(int x) {
  *   Rating: 2
  */
 int allOddBits(int x) {
+  // F    D
+  // 1111 1101
+
+  // Use 4 bits for simplicity.
+  // x should at least be 1010.
+
+  // AND - matches results in 1, others result in 0
+  // e.g. 1111 & 1010 = 1010
+
+  // Find a way to repeat 1010 to the same bit lenght of x
+  // x & 1010 result should be 1010
+  // to check if 1010 = 1010 -> ~1010 XOR 1010 = 0000
+
   return 2;
 }
 /*
