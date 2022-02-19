@@ -265,7 +265,21 @@ int isAsciiDigit(int x) {
  *   Rating: 3
  */
 int conditional(int x, int y, int z) {
-  return 2;
+  // Make a 11... or 00... mask based
+  // on X being truthy or falsy.
+  int mask = (!!x) << 31 >> 31;
+
+  // IF 11... THEN
+  //  y & 11... = y
+  //  z & 00... = 0
+  //  y | 0 = y
+
+  // IF 00.. THEN
+  //  y & 00... = 0
+  //  z & 11... = z
+  //  0 | z = z
+
+  return (y & mask) | (z & ~mask);
 }
 /*
  * isLessOrEqual - if x <= y  then return 1, else return 0
