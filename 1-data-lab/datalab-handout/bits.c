@@ -235,7 +235,27 @@ int negate(int x) {
  *   Rating: 3
  */
 int isAsciiDigit(int x) {
-  return 2;
+  int tmin = 1 << 31;
+
+  /*
+   * x should be bigger than 0x30
+   * x - 0x30 should be 0 or positive
+   * & Tmin should be 0 if 0 or positive
+   */
+  int greaterThan = ! ((x + (~0x30 + 1)) & tmin);
+
+  /*
+   * 0x30 should be bigger than x
+   * 0x30 - x should be 0 or positive
+   * & Tmin should be 0 if 0 or positive
+   */
+  int lessThan = ! ((0x39 + (~x + 1)) & tmin);
+
+  /*
+   * x should be both greater than the lower bound
+   * and less than the upper bound for it to be in range.
+   */
+  return greaterThan & lessThan;
 }
 /*
  * conditional - same as x ? y : z
