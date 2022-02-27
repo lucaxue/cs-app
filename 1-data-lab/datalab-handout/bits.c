@@ -235,21 +235,21 @@ int negate(int x) {
  *   Rating: 3
  */
 int isAsciiDigit(int x) {
-  int tmin = 1 << 31;
-
   /*
    * x should be bigger than 0x30
    * x - 0x30 should be 0 or positive
-   * & Tmin should be 0 if 0 or positive
+   * right shifted 31 should be 0 if 0 or positive
+   * (to check the most significant bit.)
    */
-  int greaterThan = ! ((x + (~0x30 + 1)) & tmin);
+  int greaterThan = ! ((x + (~0x30 + 1)) >> 31);
 
   /*
    * 0x30 should be bigger than x
    * 0x30 - x should be 0 or positive
-   * & Tmin should be 0 if 0 or positive
+   * right shifted 31 should be 0 if 0 or positive
+   * (to check the most significant bit.)
    */
-  int lessThan = ! ((0x39 + (~x + 1)) & tmin);
+  int lessThan = ! ((0x39 + (~x + 1)) >> 31);
 
   /*
    * x should be both greater than the lower bound
@@ -289,7 +289,14 @@ int conditional(int x, int y, int z) {
  *   Rating: 3
  */
 int isLessOrEqual(int x, int y) {
-  return 2;
+  int yIsPositive = !(y >> 31);
+  int xIsNegative = !((x >> 31) + 1);
+
+  int yMinusXIsPositive = !((y + ~x + 1) >> 31);
+
+  return
+    (yIsPositive & xIsNegative) |
+    ((yIsPositive | xIsNegative) & yMinusXIsPositive);
 }
 //4
 /*
