@@ -308,7 +308,20 @@ int isLessOrEqual(int x, int y) {
  *   Rating: 4
  */
 int logicalNeg(int x) {
-  return 2;
+
+  // IF x is not 0:
+  //   x | -x -> [100...] (-ve)
+  //   right shift it by 31 to get the signed bit (1)
+  //   flip it to get 0
+  //   0 & 1 = 0
+
+  // IF x is 0:
+  //   x | -x -> [000...] (0)
+  //   right shift it by 31 to get the signed bit (0)
+  //   flip it to get 1
+  //   1 & 1 = 1
+
+  return ~((x | (~x + 1)) >> 31) & 1;
 }
 /* howManyBits - return the minimum number of bits required to represent x in
  *             two's complement
