@@ -336,7 +336,43 @@ int logicalNeg(int x) {
  *  Rating: 4
  */
 int howManyBits(int x) {
-  return 0;
+  int bit0, bit1, bit2, bit4, bit8, bit16;
+
+  int mask = x >> 31;
+  x = (mask & ~x) | (~mask & x); // Ensures x is not in two's complement form.
+
+  // Perform binary search by checking if there is a signed
+  // bit in the first 16, 8, 4, 2, 1 bits of x.
+
+  // IF 1 is in the first 16 bits THEN
+  //   bit16 = 16
+  //   AND x is right shifted by 16.
+  // ELSE
+  //   bit16 = 0
+  //   AND x remains unchanged
+
+  // and so on...
+
+  bit16 = !!(x >> 16) << 4;
+  x >>= bit16;
+
+  bit8 = !!(x >> 8) << 3;
+  x >>= bit8;
+
+  bit4 = !!(x >> 4) << 2;
+  x >>= bit4;
+
+  bit2 = !!(x >> 2) << 1;
+  x >>= bit2;
+
+  bit1 = !!(x >> 1);
+  x >>= bit1;
+
+  bit0 = x;
+
+  // The sum of the bits + 1 is the
+  // minimum number of bits for its two complement.
+  return bit16 + bit8 + bit4 + bit2 + bit1 + bit0 + 1;
 }
 //float
 /*
